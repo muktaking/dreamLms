@@ -1,0 +1,41 @@
+// a nice navigation bar
+nav.navbar.navbar-dark.bg-danger.navbar-expand-md.sticky-top
+    .container    
+        a.navbar-brand(href="")
+            i.fab.fa-apple
+        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent")
+            span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarSupportedContent
+            ul.navbar-nav
+                li.nav-item
+                    a.nav-link(href="/").active Home
+                if isAuthenticated     
+                    li.nav-item
+                        a.nav-link(href="/exam") Exams
+                    li.nav-item
+                        a.nav-link(href="/exam/add") Add Question
+                    li.nav-item
+                        a.nav-link(href="/exam/edit") Edit Question                                    
+            ul.navbar-nav.ml-auto
+                li.nav-item
+                    a.nav-link(href="#")
+                        i.fab.fa-facebook
+                li.nav-item
+                    a.nav-link(href="#")
+                        i.fab.fa-twitter
+                li.nav-item
+                    a.nav-link(href="#")
+                        i.fab.fa-linkedin
+                if !isAuthenticated
+                    li.nav-item.ml-5
+                        a.nav-link(href="/user/login")  Login
+                    li.nav-item
+                        a.nav-link(href="/user/signup")  Sign Up    
+
+                if isAuthenticated
+                    li.nav-item
+                        form(action="/user/logout" method="POST")
+                            input(type="hidden" name="_csrf" value=csrfToken )
+                            button.btn.btn-danger Log Out 
+
+//navigation bar ends
